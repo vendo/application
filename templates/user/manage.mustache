@@ -1,0 +1,36 @@
+<form action="user/manage" method="post" class="bp">
+	{{#errors}}<div class="error">{{{errors}}}</div>{{/errors}}
+	{{#success}}<div class="success">{{{success}}}</div>{{/success}}
+	<fieldset>
+		<legend>Personal Information</legend>
+		<ul>
+			{{#user}}<li>
+				<label for="user_email">Email</label><br />
+				<input type="text" name="user[email]" id="user_email" value="{{email}}" />
+			</li>
+			<li>
+				<label for="user_first_name">First Name</label><br />
+				<input type="text" name="user[first_name]" id="user_first_name" value="{{first_name}}" />
+			</li>
+			<li>
+				<label for="user_last_name">Last Name</label><br />
+				<input type="text" name="user[last_name]" id="user_last_name" value="{{last_name}}" />
+			</li>
+			<li>
+				<label for="user_password">Password</label><br />
+				<input type="password" name="user[password]" id="user_password" />
+			</li>
+			<li>
+				<label for="user_repeat_password">Repeat Password</label><br />
+				<input type="password" name="user[repeat_password]" id="user_repeat_password" />
+			</li>{{/user}}
+		</ul>
+	</fieldset>
+	<fieldset>
+		<legend>Address Information</legend>
+		<ul>
+			{{>address}}
+		</ul>
+	</fieldset>
+	<input type="submit" value="Submit" />
+</form>

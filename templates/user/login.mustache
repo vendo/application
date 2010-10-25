@@ -1,0 +1,17 @@
+<form action="user/login" method="post" class="bp">
+	<fieldset>
+		<legend>{{title}}</legend>
+		{{#errors}}<div class="error">{{errors}}</div>{{/errors}}
+		<ul>
+			<li>
+				<label for="email">Email</label><br />
+				<input type="text" name="email" id="email" />
+			</li>
+			<li>
+				<label for="password">Password</label><br />
+				<input type="password" name="password" id="password" />
+			</li>
+			<li><input type="submit" value="Login" /></li>
+		</ul>
+	</fieldset>
+</form>

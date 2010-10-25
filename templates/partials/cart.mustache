@@ -1,0 +1,29 @@
+<table>
+	<thead>
+		<tr>
+			<th>Qty</th>
+			<th>Product Name</th>
+			<th>Price</th>
+			<th>Total Price</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#cart}}<tr>
+			{{#product}}<td>
+				<input name="delete[{{id}}]" value="{{id}}" type="checkbox" />
+				<input type="text" name="new_quantity[{{id}}]" value="{{quantity}}" />
+			</td>
+			<td>{{name}}</td>
+			<td>${{price}}</td>
+			<td>${{total_price}}</td>{{/product}}
+		</tr>
+		{{/cart}}
+	</tbody>
+	<tfoot>
+		<tr>
+			<td>{{total_items}}</td>
+			<td colspan="2"></td>
+			<td>${{total_price}}</td>
+		</tr>
+	</tfoot>
+</table>

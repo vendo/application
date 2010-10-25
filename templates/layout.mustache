@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>{{title}}</title>
+		<base href="{{base}}" />
+		<link href="media/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+		<link href="media/css/print.css" media="print" rel="stylesheet" type="text/css" />
+		<!--[if IE]>
+			<link href="media/css/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+		<![endif]-->
+	</head>
+	<body class="bp two-col">
+		<div id="container">
+			<div id="header">
+				<h1>{{title}}</h1>
+			</div>
+			<div id="sidebar">
+				<ul>
+					<li><a href="home">Home</a></li>
+					<li><a href="cart/index">Cart</a></li>
+					<li>
+						Product Categories<br />
+						<ul>
+							{{#product_categories}}
+								{{>product_category}}
+							{{/product_categories}}
+						</ul>
+				</ul>
+				<p>You are <em>{{logged_in_status}}</em></p>
+				<ul>{{#account_links}}
+					<li><a href="{{location}}">{{text}}</a></li>
+				{{/account_links}}</ul>
+			</div>
+			<div id="content">
+				{{>body}}
+			</div>
+			<div id="footer">
+				&nbsp;
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,8 @@
+<h2>Shopping Cart</h2>
+
+<form action="cart/update" method="post" class="bp">
+	{{>cart}}
+	<p><input type="submit" name="submit[selected]" value="Delete Selected / Update Quantities" /></p>
+	<p><input type="submit" name="submit[all]" value="Empty Cart" /></p>
+	<p><a href="checkout/index">Checkout</a></p>
+</form>

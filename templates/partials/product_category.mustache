@@ -1,0 +1,8 @@
+<li>
+	<a href="product/category/{{id}}">{{name}}</a>
+	{{#has_children}}<ul>
+		{{#children}}
+			{{>product_category}}
+		{{/children}}
+	</ul>{{/has_children}}
+</li>

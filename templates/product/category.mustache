@@ -1,0 +1,10 @@
+<h2>{{#category}}{{name}}{{/category}}</h2>
+<ul>
+	{{#products}}<li>
+		<h3><a href="product/view/{{id}}">{{name}}</a></h3>
+		<p><img src="{{photo}}" alt="{{name}}" height="50" /></p>
+		<p>{{price}}</p>
+		<p>{{description}}</p>
+		<p><a href="cart/add?id={{id}}">Add to cart</a></p>
+	</li>{{/products}}
+</ul>

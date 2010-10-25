@@ -1,0 +1,42 @@
+<h2>Checkout goes here</h2>
+<form action="checkout/process" method="post" class="bp">
+<p>We just need some information from you first.</p>
+{{#errors}}<div class="error">{{{errors}}}</div>{{/errors}}
+{{#can_login}}
+	<p>You can <a href="user/login">login</a> to have this order saved to your account</p>
+	<p>If you don't have an account, simply fill in a password below, and an account will be created for you.</p>
+<fieldset>
+	<legend>Personal Information</legend>
+	<ul>
+		{{#user}}<li>
+			<label for="user_email">Email Address*</label><br />
+			<input type="text" name="user[email]" id="user_email" value="{{email}}" />
+		</li>
+		<li>
+			<label for="user_first_name">First Name*</label><br />
+			<input type="text" name="user[first_name]" id="user_first_name" value="{{first_name}}" />
+		</li>
+		<li>
+			<label for="user_last_name">Last Name*</label><br />
+			<input type="text" name="user[last_name]" id="user_last_name" value="{{last_name}}" />
+		</li>{{/user}}
+		<li>
+			<label for="user_password">Password</label><br />
+			<input type="password" name="user[password]" id="user_password" />
+		</li>
+		<li>
+			<label for="user_repeat_password">Repeat Password</label><br />
+			<input type="password" name="user[repeat_password]" id="user_repeat_password" />
+		</li>
+	</ul>
+</fieldset>{{/can_login}}
+<fieldset>
+	<legend>Billing/Shipping Information (All fields required)</legend>
+	<ul>
+		{{>address}}
+	</ul>
+</fieldset>
+{{{payment_form}}}
+{{>cart}}
+<input type="submit" value="Submit Order" />
+</form>

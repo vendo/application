@@ -1,0 +1,38 @@
+<form action="user/register" method="post" class="bp">
+	<fieldset>
+		<legend>{{title}}</legend>
+		<p>Use this form to register a user</p>
+		{{#errors}}<div class="error">{{{errors}}}</div>{{/errors}}
+		<ul>
+			{{#user}}<li>
+				<label for="user_email">Email</label><br />
+				<input type="text" name="user[email]" id="user_email" value="{{email}}" />
+			</li>
+			<li>
+				<label for="user_first_name">First Name</label><br />
+				<input type="text" name="user[first_name]" id="user_first_name" value="{{first_name}}" />
+			</li>
+			<li>
+				<label for="user_last_name">Last Name</label><br />
+				<input type="text" name="user[last_name]" id="user_last_name" value="{{last_name}}" />
+			</li>
+			<li>
+				<label for="user_password">Password</label><br />
+				<input type="password" name="user[password]" id="user_password" />
+			</li>
+			<li>
+				<label for="user_repeat_password">Repeat Password</label><br />
+				<input type="password" name="user[repeat_password]" id="user_repeat_password" />
+			</li>
+			<li>
+				Role:
+				<ul>
+					{{#roles}}<li><input type="checkbox" name="user[role_id][]" id="user_{{name}}_{{id}}" value="{{id}}" /> <label for="user_{{name}}_{{id}}">{{name}}</label></li>
+					{{/roles}}
+				</ul>
+			</li>{{/user}}
+			{{>address}}
+			<li><input type="submit" value="Submit" /></li>
+		</ul>
+	</fieldset>
+</form>
