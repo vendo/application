@@ -24,7 +24,7 @@ class Controller_Photo extends Controller
 	 */
 	public function action_index($photo = NULL)
 	{
-		$photo = new Model_Photo($photo);
+		$photo = new Model_Vendo_Photo($photo);
 
 		if ( ! $photo->id)
 		{

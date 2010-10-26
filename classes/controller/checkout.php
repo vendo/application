@@ -227,9 +227,9 @@ class Controller_Checkout extends Controller
 	 * @return bool
 	 */
 	protected function process_new_account(
-		Model_User & $user,
+		Model_Vendo_User & $user,
 		$user_post = array(),
-		Model_Address $address
+		Model_Vendo_Address $address
 	)
 	{
 		$validate = Validate::factory(
@@ -251,7 +251,7 @@ class Controller_Checkout extends Controller
 			$user->address_id = $address->id;
 			$user->save();
 
-			$user->roles = Model_Role::LOGIN;
+			$user->roles = Model_Vendo_Role::LOGIN;
 		}
 		else
 		{

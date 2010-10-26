@@ -19,7 +19,7 @@ class Controller_Cart extends Controller
 		$product_id = arr::get($_GET, 'id');
 		$quantity = arr::get($_GET, 'quantity', 1);
 
-		$product = new Model_Product($product_id);
+		$product = new Model_Vendo_Product($product_id);
 
 		if ($product->id)
 		{
@@ -65,7 +65,7 @@ class Controller_Cart extends Controller
 					) as $product_id => $quantity
 				)
 				{
-					$product = new Model_Product($product_id);
+					$product = new Model_Vendo_Product($product_id);
 
 					// If it's been marked for deletion, do that instead
 					if (isset($_POST['delete'][$product_id]))

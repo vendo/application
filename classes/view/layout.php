@@ -98,7 +98,7 @@ class View_Layout extends View_Kohana_Layout
 	 */
 	public function product_categories()
 	{
-		return AutoModeler_ORM::factory('product_category')->full_tree();
+		return AutoModeler_ORM::factory('vendo_product_category')->full_tree();
 	}
 
 	/**

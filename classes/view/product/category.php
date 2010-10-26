@@ -30,7 +30,7 @@ class View_Product_Category extends View_Layout
 	public function products()
 	{
 		$products = array();
-		foreach ($this->category->find_related('products') as $product)
+		foreach ($this->category->find_related('vendo_products') as $product)
 		{
 			$products[] = $product->as_array()+array(
 				'photo' => $product->primary_photo()->uri(),

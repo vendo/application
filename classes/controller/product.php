@@ -26,7 +26,7 @@ class Controller_Product extends Controller
 	 */
 	public function action_category($id = NULL)
 	{
-		$category = new Model_Product_Category($id);
+		$category = new Model_Vendo_Product_Category($id);
 
 		if ( ! $category->id)
 		{
@@ -45,7 +45,7 @@ class Controller_Product extends Controller
 	 */
 	public function action_view($product_id = NULL)
 	{
-		$product = new Model_Product($product_id);
+		$product = new Model_Vendo_Product($product_id);
 
 		if ( ! $product->id)
 		{

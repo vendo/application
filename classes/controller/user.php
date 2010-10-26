@@ -14,8 +14,8 @@ class Controller_User extends Controller
 	public function action_register()
 	{
 		$this->request->response = new View_User_Register;
-		$user = new Model_User;
-		$address = new Model_Address;
+		$user = new Model_Vendo_User;
+		$address = new Model_Vendo_Address;
 
 		if ($_POST)
 		{
@@ -137,7 +137,7 @@ class Controller_User extends Controller
 		$this->request->response->bind('address', $address);
 
 		$user = Auth::instance()->get_user();
-		$address = $user->address ? $user->address : new Model_Address;
+		$address = $user->address ? $user->address : new Model_Vendo_Address;
 
 		if ($_POST)
 		{
@@ -181,7 +181,7 @@ class Controller_User extends Controller
 
 				// Only save the address if they've entered data and it's
 				// different than their old one
-				$user_address = $user->address ? $user->address : new Model_Address;
+				$user_address = $user->address ? $user->address : new Model_Vendo_Address;
 				if (
 					$entered_address
 					AND $address->as_array() != $user_address
