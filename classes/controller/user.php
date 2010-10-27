@@ -63,7 +63,7 @@ class Controller_User extends Controller
 
 				foreach ($roles as $role)
 				{
-					$user->roles = $role;
+					$user->vendo_roles = $role;
 				}
 
 				Request::instance()->redirect('home');
