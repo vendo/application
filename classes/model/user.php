@@ -36,8 +36,6 @@ class Model_User extends AutoModeler_ORM
 		'vendo_roles',
 	);
 
-	protected $_shopping_cart;
-
 	/**
 	 * Sets a value to this object. Used for hashing passwords for the user
 	 * 
