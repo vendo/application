@@ -209,7 +209,7 @@ class Controller_Checkout extends Controller
 	 *
 	 * @return bool
 	 */
-	protected function should_create_account(Model_User $user)
+	protected function should_create_account(Model_Vendo_User $user)
 	{
 		$status = FALSE;
 

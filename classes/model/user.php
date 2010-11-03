@@ -33,7 +33,7 @@ class Model_User extends AutoModeler_ORM
 	);
 
 	protected $_has_many = array(
-		'vendo_roles',
+		'roles',
 	);
 
 	/**
@@ -82,7 +82,15 @@ class Model_User extends AutoModeler_ORM
 		{
 			parent::__construct($id);
 		}
+	}
 
-		$this->_shopping_cart = new Model_Order;
+	/**
+	 * Empty complete_login() method for Auth. May contain behavior later.
+	 * 
+	 * @return null
+	 */
+	public function complete_login()
+	{
+
 	}
 }
