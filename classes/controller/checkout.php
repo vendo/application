@@ -45,7 +45,7 @@ class Controller_Checkout extends Controller
 			$user->set_fields($temp);
 		}
 
-		$address = AutoModeler_ORM::factory('address');
+		$address = AutoModeler_ORM::factory('vendo_address');
 		$address->set_fields(arr::get($_POST, 'address', array()));
 
 		// Build the contact model
@@ -209,7 +209,7 @@ class Controller_Checkout extends Controller
 	 *
 	 * @return bool
 	 */
-	protected function should_create_account(Model_User $user)
+	protected function should_create_account(Model_Vendo_User $user)
 	{
 		$status = FALSE;
 

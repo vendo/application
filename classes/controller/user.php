@@ -97,7 +97,7 @@ class Controller_User extends Controller
 			// Try to login
 			if (
 				Auth::instance()->login(
-					arr::get($_POST, 'email'),
+					new Model_Vendo_User(arr::get($_POST, 'email')),
 					arr::get($_POST, 'password')
 				)
 			)
