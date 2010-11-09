@@ -28,10 +28,6 @@ class Model_User extends AutoModeler_ORM
 		'address_id' => array('numeric'),
 	);
 
-	protected $_callbacks = array(
-		'email' => 'check_unique_email',
-	);
-
 	protected $_has_many = array(
 		'roles',
 	);
