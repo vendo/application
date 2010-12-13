@@ -41,7 +41,7 @@ class Controller_Checkout extends Controller
 		if ( ! is_object($user))
 		{
 			$temp = $user;
-			$user = AutoModeler_ORM::factory('user');
+			$user = AutoModeler_ORM::factory('vendo_user');
 			$user->set_fields($temp);
 		}
 
