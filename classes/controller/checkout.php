@@ -41,11 +41,11 @@ class Controller_Checkout extends Controller
 		if ( ! is_object($user))
 		{
 			$temp = $user;
-			$user = AutoModeler_ORM::factory('user');
+			$user = Model::factory('user');
 			$user->set_fields($temp);
 		}
 
-		$address = AutoModeler_ORM::factory('vendo_address');
+		$address = Model::factory('vendo_address');
 		$address->set_fields(arr::get($_POST, 'address', array()));
 
 		// Build the contact model

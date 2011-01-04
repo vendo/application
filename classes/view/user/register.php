@@ -25,7 +25,7 @@ class View_User_Register extends View_Layout
 	public function roles()
 	{
 		$roles = array();
-		foreach (AutoModeler_ORM::factory('role')->fetch_all() as $role)
+		foreach (Model::factory('role')->load(NULL, NULL) as $role)
 		{
 			$roles[] = array(
 				'id' => $role->id,
