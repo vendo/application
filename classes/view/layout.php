@@ -149,4 +149,15 @@ class View_Layout extends View_Kohana_Layout
 
 		return $links;
 	}
+
+	/**
+	 * Var method to return an array of routes. Subviews should extend this,
+	 * call parent::routes() and add their own to it.
+	 *
+	 * @return array
+	 */
+	public function routes()
+	{
+		return array();
+	}
 } // End View_Layout
