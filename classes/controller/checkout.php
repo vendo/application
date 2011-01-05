@@ -41,7 +41,7 @@ class Controller_Checkout extends Controller
 		if ( ! is_object($user))
 		{
 			$temp = $user;
-			$user = Model::factory('user');
+			$user = Model::factory('vendo_user');
 			$user->set_fields($temp);
 		}
 
