@@ -96,6 +96,7 @@ class Controller_Checkout extends Controller
 			{
 				$address->save();
 				$user->address_id = $address->id;
+				$contact->address_id = $address->id;
 			}
 			elseif (TRUE !== $address->is_valid())
 			{
@@ -107,6 +108,9 @@ class Controller_Checkout extends Controller
 			}
 
 			$contact->address_id = $address->id;
+			$contact->save();
+
+			$order->contact_id = $contact->id;
 
 			if (TRUE !== $contact->is_valid())
 			{
