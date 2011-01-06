@@ -127,6 +127,12 @@ class View_Layout extends View_Kohana_Layout
 				'location' => 'admin/product',
 				'text'     => 'Manage Products',
 			);
+			$links[] = array(
+				'location' => Route::get('user actions')->uri(
+					array('action' => 'index')
+				),
+				'text'     => 'Manage Users',
+			);
 		}
 		if (Auth::instance()->get_user()->can('logout'))
 		{
