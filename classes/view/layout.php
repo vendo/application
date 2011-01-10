@@ -120,18 +120,10 @@ class View_Layout extends View_Kohana_Layout
 		if (Auth::instance()->get_user()->can('use_admin'))
 		{
 			$links[] = array(
-				'location' => 'admin/category',
-				'text'     => 'Manage Product Categories',
-			);
-			$links[] = array(
-				'location' => 'admin/product',
-				'text'     => 'Manage Products',
-			);
-			$links[] = array(
-				'location' => Route::get('user actions')->uri(
+				'location' => Route::get('admin panel')->uri(
 					array('action' => 'index')
 				),
-				'text'     => 'Manage Users',
+				'text'     => 'Admin',
 			);
 		}
 		if (Auth::instance()->get_user()->can('logout'))
