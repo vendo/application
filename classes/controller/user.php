@@ -66,6 +66,12 @@ class Controller_User extends Controller
 					$user->vendo_roles = $role;
 				}
 
+				// Log the user in
+				Auth::instance()->login(
+					$user,
+					arr::get($user_post, 'password')
+				);
+
 				Request::instance()->redirect('home');
 			}
 			catch (AutoModeler_Exception $e)
