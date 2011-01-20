@@ -23,13 +23,6 @@
 			<li>
 				<label for="user_repeat_password">Repeat Password</label><br />
 				<input type="password" name="user[repeat_password]" id="user_repeat_password" />
-			</li>
-			<li>
-				Role:
-				<ul>
-					{{#roles}}<li><input type="checkbox" name="user[role_id][]" id="user_{{name}}_{{id}}" value="{{id}}" /> <label for="user_{{name}}_{{id}}">{{name}}</label></li>
-					{{/roles}}
-				</ul>
 			</li>{{/user}}
 			{{>address}}
 			<li><input type="submit" value="Submit" /></li>

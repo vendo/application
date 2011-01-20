@@ -61,10 +61,7 @@ class Controller_User extends Controller
 
 				$user->save($validate);
 
-				foreach ($roles as $role)
-				{
-					$user->vendo_roles = $role;
-				}
+				$user->vendo_roles = Model_Vendo_Role::LOGIN;
 
 				// Log the user in
 				Auth::instance()->login(
