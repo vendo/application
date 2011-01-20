@@ -108,7 +108,15 @@ class Controller_Checkout extends Controller
 			}
 
 			$contact->address_id = $address->id;
-			$contact->save();
+
+			try
+			{
+				$contact->save();
+			}
+			catch (AutoModeler_Exception $e)
+			{
+				$errors+=$e->errors;
+			}
 
 			$order->contact_id = $contact->id;
 
