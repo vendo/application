@@ -144,15 +144,7 @@ class Controller_User extends Controller
 			$validate = NULL;
 			if (arr::get($_POST, 'password'))
 			{
-				$validate = Validate::factory(
-					array(
-						'password' => arr::get($user_post, 'password'),
-						'repeat_password' => arr::get(
-							$user_post, 'repeat_password'
-						),
-					)
-				)->rule('repeat_password', 'not_empty')
-				->rule('password', 'matches', array('repeat_password'));
+				$validate = Model_Vendo_User::get_password_validation();
 			}
 			else
 			{

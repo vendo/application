@@ -244,15 +244,7 @@ class Controller_Checkout extends Controller
 		Model_Vendo_Address $address
 	)
 	{
-		$validate = Validate::factory(
-			array(
-				'password' => arr::get($user_post['password'], 'password'),
-				'repeat_password' => arr::get(
-					$user_post['repeat_password'], 'repeat_password'
-				),
-			)
-		)->rule('repeat_password', 'not_empty')
-		->rule('password', 'matches', array('repeat_password'));
+		$validate = Model_Vendo_User::get_password_validation();
 
 		$valid_user = $user->is_valid($validate);
 		$valid_address = $address->is_valid();
