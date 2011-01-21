@@ -29,7 +29,7 @@ class Controller_Cart extends Controller
 			);
 		}
 
-		Request::instance()->redirect('cart/index');
+		Request::current()->redirect('cart/index');
 	}
 
 	/**
@@ -39,8 +39,8 @@ class Controller_Cart extends Controller
 	 */
 	public function action_index()
 	{
-		$this->request->response = new View_Cart_Index;
-		$this->request->response->bind('cart', $cart);
+		$this->view = new View_Cart_Index;
+		$this->view->bind('cart', $cart);
 
 		$cart = Auth::instance()->get_user()->cart();
 	}
@@ -85,6 +85,6 @@ class Controller_Cart extends Controller
 				break;
 		}
 
-		Request::instance()->redirect('cart/index');
+		Request::current()->redirect('cart/index');
 	}
 }

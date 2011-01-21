@@ -16,7 +16,7 @@ class Controller_Product extends Controller
 	 */
 	public function action_index()
 	{
-		$this->request->response = new View_Product_Index;
+		$this->view = new View_Product_Index;
 	}
 
 	/**
@@ -33,9 +33,9 @@ class Controller_Product extends Controller
 			throw new Vendo_404('Category Not Found');
 		}
 
-		$this->request->response = new View_Product_Category;
-		$this->request->response->title = $category->name;
-		$this->request->response->category = $category;
+		$this->view = new View_Product_Category;
+		$this->view->title = $category->name;
+		$this->view->category = $category;
 	}
 
 	/**
@@ -52,8 +52,8 @@ class Controller_Product extends Controller
 			throw new Vendo_404('Product not found!');
 		}
 
-		$this->request->response = new View_Product_View;
-		$this->request->response->title = $product->name;
-		$this->request->response->product = $product;
+		$this->view = new View_Product_View;
+		$this->view->title = $product->name;
+		$this->view->product = $product;
 	}
 }

@@ -17,8 +17,8 @@ class Controller_Checkout extends Controller
 	 */
 	public function action_index()
 	{
-		$this->request->response = new View_Checkout_Index;
-		$this->request->response->set(
+		$this->view = new View_Checkout_Index;
+		$this->view->set(
 			array(
 				'user' => Auth::instance()->get_user()->as_array(),
 				'address' => Auth::instance()->get_user()->address->as_array(),
@@ -146,8 +146,8 @@ class Controller_Checkout extends Controller
 				$address->delete();
 			}
 
-			$this->request->response = new View_Checkout_Index;
-			$this->request->response->set(
+			$this->view = new View_Checkout_Index;
+			$this->view->set(
 				array(
 					'user' => $user->as_array(),
 					'address' => $address->as_array(),
@@ -158,7 +158,7 @@ class Controller_Checkout extends Controller
 			$errors = (string) View::factory('form_errors')->set(
 				array('errors' => $errors)
 			);
-			$this->request->response->errors = $errors;
+			$this->view->errors = $errors;
 			return;
 		}
 
@@ -185,7 +185,7 @@ class Controller_Checkout extends Controller
 			Auth::instance()->get_user()->cart(new Model_Order);
 
 			// Show success message!
-			$this->request->response = new View_Checkout_Process;
+			$this->view = new View_Checkout_Process;
 		}
 		catch (Payment_Exception $e)
 		{
@@ -196,8 +196,8 @@ class Controller_Checkout extends Controller
 				$address->delete();
 			}
 
-			$this->request->response = new View_Checkout_Index;
-			$this->request->response->set(
+			$this->view = new View_Checkout_Index;
+			$this->view->set(
 				array(
 					'user' => $user->as_array(),
 					'address' => $address->as_array(),
@@ -210,7 +210,7 @@ class Controller_Checkout extends Controller
 					'general' => $e->getMessage(),
 				))
 			);
-			$this->request->response->errors = $errors;
+			$this->view->errors = $errors;
 			return;
 		}
 	}
@@ -270,8 +270,8 @@ class Controller_Checkout extends Controller
 			$errors = $user->errors('form_errors');
 			$errors+=$address->errors('form_errors');
 
-			$this->request->response = new View_Checkout_Index;
-			$this->request->response->set(
+			$this->view = new View_Checkout_Index;
+			$this->view->set(
 				array(
 					'user' => $user->as_array(),
 					'address' => $address->as_array(),
@@ -282,7 +282,7 @@ class Controller_Checkout extends Controller
 			$errors = (string) View::factory('form_errors')->set(
 				array('errors' => $errors)
 			);
-			$this->request->response->errors = $errors;
+			$this->view->errors = $errors;
 
 			return FALSE;
 		}

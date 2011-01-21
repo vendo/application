@@ -13,7 +13,7 @@ class Controller_User extends Controller
 {
 	public function action_register()
 	{
-		$this->request->response = new View_User_Register;
+		$this->view = new View_User_Register;
 		$user = new Model_Vendo_User;
 		$address = new Model_Vendo_Address;
 
@@ -21,13 +21,7 @@ class Controller_User extends Controller
 		{
 			$user_post = arr::get($_POST, 'user', array());
 			$address_post = arr::get($_POST, 'address', array());
-			$validate = Validate::factory(
-				array(
-					'password' => arr::get($user_post, 'password'),
-					'repeat_password' => arr::get($user_post, 'repeat_password'),
-				)
-			)->rule('repeat_password', 'not_empty')
-			->rule('password', 'matches', array('repeat_password'));
+			$validate = Model_Vendo_User::get_password_validation($user_post);
 
 			$roles = arr::get($user_post, 'role_id', array());
 			unset($_POST['user']['role_id']);
@@ -69,11 +63,11 @@ class Controller_User extends Controller
 					arr::get($user_post, 'password')
 				);
 
-				Request::instance()->redirect('home');
+				Request::current()->redirect('home');
 			}
 			catch (AutoModeler_Exception $e)
 			{
-				$this->request->response->errors = (string) $e;
+				$this->view->errors = (string) $e;
 
 				// If we've saved an address, get rid of it because it's junk
 				// This can happen if the address is valid on the page, but the
@@ -85,13 +79,13 @@ class Controller_User extends Controller
 			}
 		}
 
-		$this->request->response->user = $user;
-		$this->request->response->address = $address;
+		$this->view->user = $user;
+		$this->view->address = $address;
 	}
 
 	public function action_login()
 	{
-		$this->request->response = new View_User_Login;
+		$this->view = new View_User_Login;
 
 		if ($_POST)
 		{
@@ -107,10 +101,10 @@ class Controller_User extends Controller
 			{
 				Auth::instance()->get_user()->cart($cart);
 
-				Request::instance()->redirect('home');
+				Request::current()->redirect('home');
 			}
 
-			$this->request->response->errors = 'Invalid email or password';
+			$this->view->errors = 'Invalid email or password';
 		}
 	}
 
@@ -122,7 +116,7 @@ class Controller_User extends Controller
 
 		Auth::instance()->get_user()->cart($cart);
 
-		Request::instance()->redirect('home');
+		Request::current()->redirect('home');
 	}
 
 	/**
@@ -135,9 +129,9 @@ class Controller_User extends Controller
 		if ( ! Auth::instance()->logged_in())
 			throw new Vendo_404('Account Not Found');
 
-		$this->request->response = new View_User_Manage;
-		$this->request->response->bind('user', $user);
-		$this->request->response->bind('address', $address);
+		$this->view = new View_User_Manage;
+		$this->view->bind('user', $user);
+		$this->view->bind('address', $address);
 
 		$user = Auth::instance()->get_user();
 		$address = $user->address ? $user->address : new Model_Vendo_Address;
@@ -196,12 +190,12 @@ class Controller_User extends Controller
 
 				$user->save($validate);
 
-				$this->request->response->success =
+				$this->view->success =
 					'You have saved your settings';
 			}
 			catch (AutoModeler_Exception $e)
 			{
-				$this->request->response->errors = (string) $e;
+				$this->view->errors = (string) $e;
 			}
 		}
 	}

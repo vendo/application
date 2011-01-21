@@ -13,6 +13,6 @@ class Controller_Home extends Controller
 {
 	public function action_index()
 	{
-		$this->request->response = new View_Home;
+		
 	}
 }

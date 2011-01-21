@@ -44,7 +44,7 @@ class Model_User extends AutoModeler_ORM
 	{
 		if ('password' == $key AND $value)
 		{
-			$value = Auth::instance()->hash_password($value);
+			$value = Auth::instance()->hash($value, Auth::$salt);
 		}
 
 		parent::__set($key, $value);
