@@ -58,17 +58,6 @@ class Controller_Checkout extends Controller
 			)
 		);
 
-		// Build the credit card model
-		$credit_card_post = arr::get($_POST, 'payment');
-		$credit_card = new Model_Credit_Card(
-			arr::get($credit_card_post, 'card_number'),
-			arr::get($credit_card_post, 'months').
-				arr::get($credit_card_post, 'years'),
-			arr::get($credit_card_post, 'card_code'),
-			$contact,
-			$address
-		);
-
 		$errors = array();
 
 		// Check for a new user registration, and make a user if so
@@ -131,12 +120,6 @@ class Controller_Checkout extends Controller
 			}
 		}
 
-		// Verify the credit card is valid
-		if (TRUE !== ($cc_errors = $credit_card->validate()))
-		{
-			$errors+=$cc_errors;
-		}
-
 		if ($errors)
 		{
 			// If we've failed, and we aren't registering a new user, delete
@@ -162,37 +145,25 @@ class Controller_Checkout extends Controller
 			return;
 		}
 
-		$order->credit_card = $credit_card;
-
-		// Process the credit card
+		// Process the order
 		try
 		{
+			$order->contact_id = $contact->id;
+			$order->address_id = $address->id;
+
 			// Save the unpaid order
 			$order->save();
 
-			$status = Payment::process($order);
+			$url = Payment_Offsite::process($order, TRUE);
 
-			if (1 != $status->response_code)
-			{
-				throw new Payment_Exception(
-					'Problem processing your payment.'
-				);
-			}
-
-			// Persist the order
-			$contact->save();
-			$order->contact_id = $contact->id;
-			$order->address_id = $address->id;
-			$order->paid = TRUE;
-			$order->save();
-
+			// Empty the user's cart
 			Auth::instance()->get_user()->cart(new Model_Order);
 
-			// Show success message!
-			$this->view = new View_Checkout_Process;
+			$this->request->redirect($url);
 		}
 		catch (Payment_Exception $e)
 		{
+			throw $e;
 			// If we've failed, and we aren't registering a new user, delete
 			// the address
 			if ( ! $user->id)

@@ -23,18 +23,4 @@ class View_Checkout_Index extends View_Cart_Index
 	{
 		return Auth::instance()->get_user()->can('login');
 	}
-
-	/**
-	 * Returns HTML to render for the payment information.
-	 * 
-	 * To add HTML for new payment methods (paypal), modify this method.
-	 *
-	 * @return string
-	 */
-	public function payment_form()
-	{
-		return Kostache::factory('authorize')->set(
-			'credit_card', $this->credit_card
-		)->render();
-	}
 }
