@@ -167,6 +167,9 @@ class Controller_Checkout extends Controller
 		// Process the credit card
 		try
 		{
+			// Save the unpaid order
+			$order->save();
+
 			$status = Payment::process($order);
 
 			if (1 != $status->response_code)
@@ -180,6 +183,7 @@ class Controller_Checkout extends Controller
 			$contact->save();
 			$order->contact_id = $contact->id;
 			$order->address_id = $address->id;
+			$order->paid = TRUE;
 			$order->save();
 
 			Auth::instance()->get_user()->cart(new Model_Order);
