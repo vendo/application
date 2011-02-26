@@ -135,7 +135,6 @@ class Controller_Checkout extends Controller
 					'user' => $user->as_array(),
 					'address' => $address->as_array(),
 					'cart' => Auth::instance()->get_user()->cart(),
-					'credit_card' => $credit_card,
 				)
 			);
 			$errors = (string) View::factory('form_errors')->set(
