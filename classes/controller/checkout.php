@@ -184,6 +184,7 @@ class Controller_Checkout extends Controller
 			$order->contact_id = $contact->id;
 			$order->address_id = $address->id;
 			$order->paid = TRUE;
+			$order->order_type_id = Model_Order::TYPE_CREDIT_CARD;
 			$order->save();
 
 			Auth::instance()->get_user()->cart(new Model_Order);
