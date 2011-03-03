@@ -149,6 +149,7 @@ class Controller_Checkout extends Controller
 		{
 			$order->contact_id = $contact->id;
 			$order->address_id = $address->id;
+			$order->order_type_id = Model_Order::TYPE_GOOGLE_CHECKOUT;
 
 			// Save the unpaid order
 			$order->save();
