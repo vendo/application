@@ -73,6 +73,9 @@ class Model_User extends AutoModeler_ORM
 				foreach ($data as $key => $value)
 					$this->_data[$key] = $value;
 			}
+
+			// Manually update the state of the model
+			$this->_state = AutoModeler::STATE_LOADED;
 		}
 		else
 		{
