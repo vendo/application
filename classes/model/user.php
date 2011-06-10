@@ -12,7 +12,7 @@ class Model_User extends AutoModeler_ORM
 	protected $_table_name = 'users';
 
 	protected $_data = array(
-		'id' => '',
+		'id' => NULL,
 		'email' => '',
 		'first_name' => '',
 		'last_name' => '',
@@ -21,11 +21,22 @@ class Model_User extends AutoModeler_ORM
 	);
 
 	protected $_rules = array(
-		'email' => array('not_empty', 'email'),
-		'first_name' => array('not_empty'),
-		'last_name' => array('not_empty'),
-		'password' => array('not_empty'),
-		'address_id' => array('numeric'),
+		'email' => array(
+			array('not_empty'),
+			array('email'),
+		),
+		'first_name' => array(
+			array('not_empty'),
+		),
+		'last_name' => array(
+			array('not_empty'),
+		),
+		'password' => array(
+			array('not_empty'),
+		),
+		'address_id' => array(
+			array('numeric'),
+		),	
 	);
 
 	protected $_has_many = array(
