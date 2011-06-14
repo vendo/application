@@ -72,18 +72,11 @@ class Model_User extends AutoModeler_ORM
 	{
 		if ( ! is_numeric($id) AND NULL != $id)
 		{
-			// try and get a row with this ID
-			$data = db::select_array(array_keys($this->_data))
-				->from($this->_table_name)
-				->where('email', '=', $id)
-				->execute($this->_db);
-
-			// try and assign the data
-			if (count($data) == 1 AND $data = $data->current())
-			{
-				foreach ($data as $key => $value)
-					$this->_data[$key] = $value;
-			}
+			$this->load(
+				db::select_array(
+					$this->fields()
+				)->where($this->_table_name.'.email', '=', $id)
+			);
 		}
 		else
 		{
